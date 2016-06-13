@@ -1,0 +1,837 @@
+Index: app/src/main/res/values/colors.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/res/values/colors.xml	(revision )
++++ app/src/main/res/values/colors.xml	(revision )
+@@ -0,0 +1,6 @@
++<?xml version="1.0" encoding="utf-8"?>
++<resources>
++    <color name="colorPrimary">#3F51B5</color>
++    <color name="colorPrimaryDark">#303F9F</color>
++    <color name="colorAccent">#FF4081</color>
++</resources>
+Index: app/src/main/res/layout/activity_lista_disp.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/res/layout/activity_lista_disp.xml	(revision )
++++ app/src/main/res/layout/activity_lista_disp.xml	(revision )
+@@ -0,0 +1,39 @@
++<?xml version="1.0" encoding="utf-8"?>
++<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
++    xmlns:tools="http://schemas.android.com/tools"
++    android:layout_width="match_parent"
++    android:layout_height="match_parent"
++    android:paddingBottom="@dimen/activity_vertical_margin"
++    android:paddingLeft="@dimen/activity_horizontal_margin"
++    android:paddingRight="@dimen/activity_horizontal_margin"
++    android:paddingTop="@dimen/activity_vertical_margin"
++    tools:context="com.example.kamar.riegos.ListaDisp">
++
++    <TextView
++        android:layout_width="wrap_content"
++        android:layout_height="wrap_content"
++        android:text="Dispositivos Vinculados"
++        android:id="@+id/textView"
++        android:layout_alignParentTop="true"
++        android:layout_alignParentLeft="true"
++        android:layout_alignParentStart="true" />
++
++    <Button
++        android:layout_width="wrap_content"
++        android:layout_height="wrap_content"
++        android:text="Dispositivos Vinculados"
++        android:id="@+id/button"
++        android:layout_alignParentBottom="true"
++        android:layout_alignParentLeft="true"
++        android:layout_alignParentStart="true"
++        android:layout_alignParentRight="true"
++        android:layout_alignParentEnd="true" />
++
++    <ListView
++        android:layout_width="wrap_content"
++        android:layout_height="wrap_content"
++        android:id="@+id/listView"
++        android:layout_centerHorizontal="true"
++        android:layout_above="@+id/button"
++        android:layout_below="@+id/textView" />
++</RelativeLayout>
+Index: app/src/main/res/menu/menu_device_list.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/res/menu/menu_device_list.xml	(revision )
++++ app/src/main/res/menu/menu_device_list.xml	(revision )
+@@ -0,0 +1,9 @@
++<?xml version="1.0" encoding="utf-8"?>
++<menu xmlns:android="http://schemas.android.com/apk/res/android"
++    xmlns:app="http://schemas.android.com/apk/res-auto">
++    xmlns:app="http://schemas.android.com/apk/res-auto"
++    xmlns:tools="http://schemas.android.com/tools" tools:context=".ListaDisp">
++    <item android:id="@+id/action_settings" android:title="@string/action_settings"
++        android:orderInCategory="100" app:showAsAction="never" />
++</menu>
++
+Index: app/proguard-rules.pro
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/proguard-rules.pro	(revision )
++++ app/proguard-rules.pro	(revision )
+@@ -0,0 +1,17 @@
++# Add project specific ProGuard rules here.
++# By default, the flags in this file are appended to flags specified
++# in D:\instalados\Android\android-sdk-windows/tools/proguard/proguard-android.txt
++# You can edit the include path and order by changing the proguardFiles
++# directive in build.gradle.
++#
++# For more details, see
++#   http://developer.android.com/guide/developing/tools/proguard.html
++
++# Add any project specific keep options here:
++
++# If your project uses WebView with JS, uncomment the following
++# and specify the fully qualified class name to the JavaScript interface
++# class:
++#-keepclassmembers class fqcn.of.javascript.interface.for.webview {
++#   public *;
++#}
+Index: app/src/main/AndroidManifest.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/AndroidManifest.xml	(revision )
++++ app/src/main/AndroidManifest.xml	(revision )
+@@ -0,0 +1,27 @@
++<?xml version="1.0" encoding="utf-8"?>
++<manifest xmlns:android="http://schemas.android.com/apk/res/android"
++    package="com.example.kamar.riegos">
++    <uses-permission android:name="android.permission.BLUETOOTH_ADMIN"/>
++    <uses-permission android:name="android.permission.BLUETOOTH"/>
++
++    <application
++        android:allowBackup="true"
++        android:icon="@mipmap/ic_launcher"
++        android:label="@string/app_name"
++        android:supportsRtl="true"
++        android:theme="@style/AppTheme">
++
++        <activity android:name=".ListaDisp">
++            <intent-filter>
++                <action android:name="android.intent.action.MAIN" />
++
++                <category android:name="android.intent.category.LAUNCHER" />
++            </intent-filter>
++        </activity>
++
++        <activity android:name=".MainActivity">
++
++        </activity>
++    </application>
++
++</manifest>
+\ No newline at end of file
+Index: app/src/main/java/com/example/kamar/riegos/ListaDisp.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/java/com/example/kamar/riegos/ListaDisp.java	(revision )
++++ app/src/main/java/com/example/kamar/riegos/ListaDisp.java	(revision )
+@@ -0,0 +1,126 @@
++package com.example.kamar.riegos;
++
++import android.bluetooth.BluetoothAdapter;
++import android.bluetooth.BluetoothDevice;
++import android.content.Intent;
++import android.support.v7.app.AppCompatActivity;
++import android.os.Bundle;
++import android.view.Menu;
++import android.view.MenuItem;
++import android.view.View;
++import android.widget.AdapterView;
++import android.widget.ArrayAdapter;
++import android.widget.Button;
++import android.widget.ListView;
++import android.widget.TextView;
++import android.widget.Toast;
++
++import java.util.ArrayList;
++import java.util.Set;
++
++public class ListaDisp extends AppCompatActivity {
++
++    //Declaramos Los Componentes
++    Button btnVinculados;
++    ListView listaDispositivos;
++    //Bluetooth
++    private BluetoothAdapter myBluetooth = null;
++    private Set<BluetoothDevice> dispVinculados;
++    public static String EXTRA_ADDRESS = "device_address";
++
++    @Override
++    protected void onCreate(Bundle savedInstanceState) {
++        super.onCreate(savedInstanceState);
++        setContentView(R.layout.activity_lista_disp);
++        //Declaramos nuestros componenetes ralcionandolos con los del layout
++        btnVinculados = (Button)findViewById(R.id.button);
++        listaDispositivos = (ListView)findViewById(R.id.listView);
++
++        //Comprobamos que el dispositivo tiene bluetooth
++        myBluetooth = BluetoothAdapter.getDefaultAdapter();
++
++        if(myBluetooth == null)
++        {
++            //Mostramos un mensaje, indicando al usuario que no tiene conexión bluetooth disponible
++            Toast.makeText(getApplicationContext(), "Bluetooth no disponible", Toast.LENGTH_LONG).show();
++
++            //finalizamos la aplicación
++            finish();
++        }
++        else if(!myBluetooth.isEnabled())
++        {
++            //Preguntamos al usuario si desea encender el bluetooth
++            Intent turnBTon = new Intent(BluetoothAdapter.ACTION_REQUEST_ENABLE);
++            startActivityForResult(turnBTon,1);
++        }
++
++        btnVinculados.setOnClickListener(new View.OnClickListener() {
++            @Override
++            public void onClick(View v)
++            {
++                listaDispositivosvinculados();
++            }
++        });
++    }
++
++    private void listaDispositivosvinculados()
++    {
++        dispVinculados = myBluetooth.getBondedDevices();
++        ArrayList list = new ArrayList();
++
++        if (dispVinculados.size()>0)
++        {
++            for(BluetoothDevice bt : dispVinculados)
++            {
++                list.add(bt.getName() + "\n" + bt.getAddress()); //Obtenemos los nombres y direcciones MAC de los disp. vinculados
++            }
++        }
++        else
++        {
++            Toast.makeText(getApplicationContext(), "No se han encontrado dispositivos vinculados", Toast.LENGTH_LONG).show();
++        }
++
++        final ArrayAdapter adapter = new ArrayAdapter(this,android.R.layout.simple_list_item_1, list);
++        listaDispositivos.setAdapter(adapter);
++        listaDispositivos.setOnItemClickListener(myListClickListener);
++
++    }
++
++    private AdapterView.OnItemClickListener myListClickListener = new AdapterView.OnItemClickListener()
++    {
++        public void onItemClick (AdapterView<?> av, View v, int arg2, long arg3)
++        {
++            // Get the device MAC address, the last 17 chars in the View
++            String info = ((TextView) v).getText().toString();
++            String address = info.substring(info.length() - 17);
++
++            // Make an intent to start next activity.
++            Intent i = new Intent(ListaDisp.this, MainActivity.class);
++
++            //Change the activity.
++            i.putExtra(EXTRA_ADDRESS, address); //this will be received at ledControl (class) Activity
++            startActivity(i);
++        }
++    };
++
++
++    @Override
++    public boolean onCreateOptionsMenu(Menu menu)
++    {
++        getMenuInflater().inflate(R.menu.menu_device_list, menu);
++        return true;
++    }
++
++    @Override
++    public boolean onOptionsItemSelected(MenuItem item) {
++        // Handle action bar item clicks here. The action bar will
++        // automatically handle clicks on the Home/Up button, so long
++        // as you specify a parent activity in AndroidManifest.xml.
++        int id = item.getItemId();
++        //noinspection SimplifiableIfStatement
++        if (id == R.id.action_settings) {
++            return true;
++        }
++        return super.onOptionsItemSelected(item);
++    }
++}
+Index: app/src/main/res/menu/menu_control.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/res/menu/menu_control.xml	(revision )
++++ app/src/main/res/menu/menu_control.xml	(revision )
+@@ -0,0 +1,9 @@
++<?xml version="1.0" encoding="utf-8"?>
++<menu xmlns:android="http://schemas.android.com/apk/res/android"
++    xmlns:app="http://schemas.android.com/apk/res-auto">
++    xmlns:app="http://schemas.android.com/apk/res-auto"
++    xmlns:tools="http://schemas.android.com/tools" tools:context="com.example.kamar.riegos.MainActivity>
++    <item android:id="@+id/action_settings" android:title="@string/action_settings"
++        android:orderInCategory="100" app:showAsAction="never" />
++</menu>
++
+Index: app/build.gradle
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/build.gradle	(revision )
++++ app/build.gradle	(revision )
+@@ -0,0 +1,26 @@
++apply plugin: 'com.android.application'
++
++android {
++    compileSdkVersion 23
++    buildToolsVersion "23.0.2"
++
++    defaultConfig {
++        applicationId "com.example.kamar.riegos"
++        minSdkVersion 10
++        targetSdkVersion 23
++        versionCode 1
++        versionName "1.0"
++    }
++    buildTypes {
++        release {
++            minifyEnabled false
++            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
++        }
++    }
++}
++
++dependencies {
++    compile fileTree(dir: 'libs', include: ['*.jar'])
++    testCompile 'junit:junit:4.12'
++    compile 'com.android.support:appcompat-v7:23.4.0'
++}
+Index: app/src/main/java/com/example/kamar/riegos/MainActivity.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/java/com/example/kamar/riegos/MainActivity.java	(revision )
++++ app/src/main/java/com/example/kamar/riegos/MainActivity.java	(revision )
+@@ -0,0 +1,222 @@
++package com.example.kamar.riegos;
++
++import android.app.ProgressDialog;
++import android.bluetooth.BluetoothAdapter;
++import android.bluetooth.BluetoothDevice;
++import android.bluetooth.BluetoothSocket;
++import android.content.Intent;
++import android.os.AsyncTask;
++import android.support.v7.app.AppCompatActivity;
++import android.os.Bundle;
++import android.view.Menu;
++import android.view.MenuItem;
++import android.view.View;
++import android.widget.Button;
++import android.widget.SeekBar;
++import android.widget.TextView;
++import android.widget.Toast;
++
++import java.io.IOException;
++import java.util.UUID;
++
++public class MainActivity extends AppCompatActivity {
++    Button btnOn, btnOff, btnDis;
++    SeekBar brightness;
++    TextView lumn;
++    String address = null;
++    private ProgressDialog progress;
++    BluetoothAdapter myBluetooth = null;
++    BluetoothSocket btSocket = null;
++    private boolean isBtConnected = false;
++    static final UUID myUUID = UUID.fromString("00001101-0000-1000-8000-00805F9B34FB");
++    @Override
++    protected void onCreate(Bundle savedInstanceState) {
++        super.onCreate(savedInstanceState);
++        Intent newint = getIntent();
++        address = newint.getStringExtra(ListaDisp.EXTRA_ADDRESS); //recivimos la mac address obtenida en la actividad anterior
++
++        setContentView(R.layout.activity_main);
++
++        btnOn = (Button)findViewById(R.id.button1);
++        btnOff = (Button)findViewById(R.id.button2);
++        btnDis = (Button)findViewById(R.id.button3);
++        brightness = (SeekBar)findViewById(R.id.seekBar);
++        lumn = (TextView)findViewById(R.id.txtvlumn);
++
++        new ConnectBT().execute(); //Call the class to connect
++
++
++        btnOn.setOnClickListener(new View.OnClickListener()
++        {
++            @Override
++            public void onClick(View v)
++            {
++                turnOnLed();
++            }
++        });
++
++        btnOff.setOnClickListener(new View.OnClickListener() {
++            @Override
++            public void onClick(View v)
++            {
++                turnOffLed();
++            }
++        });
++
++        btnDis.setOnClickListener(new View.OnClickListener()
++        {
++            @Override
++            public void onClick(View v)
++            {
++                Disconnect();
++            }
++        });
++
++        brightness.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
++            @Override
++            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
++                if (fromUser==true)
++                {
++                    lumn.setText(String.valueOf(progress));
++                    try
++                    {
++                        btSocket.getOutputStream().write(String.valueOf(progress).getBytes());
++                    }
++                    catch (IOException e)
++                    {
++
++                    }
++                }
++            }
++
++            @Override
++            public void onStartTrackingTouch(SeekBar seekBar) {
++
++            }
++
++            @Override
++            public void onStopTrackingTouch(SeekBar seekBar) {
++
++            }
++        });
++
++
++    }
++
++    private void Disconnect()
++    {
++        if (btSocket!=null)
++        {
++            try
++            {
++                btSocket.close();
++            }
++            catch (IOException e)
++            { msg("Error");}
++        }
++        finish();
++
++    }
++
++    private void turnOffLed()
++    {
++        if (btSocket!=null)
++        {
++            try
++            {
++                btSocket.getOutputStream().write("TF".toString().getBytes());
++            }
++            catch (IOException e)
++            {
++                msg("Error");
++            }
++        }
++    }
++
++    private void turnOnLed()
++    {
++        if (btSocket!=null)
++        {
++            try
++            {
++                btSocket.getOutputStream().write("TO".toString().getBytes());
++            }
++            catch (IOException e)
++            {
++                msg("Error");
++            }
++        }
++    }
++
++
++    private void msg(String s)
++    {
++        Toast.makeText(getApplicationContext(),s,Toast.LENGTH_LONG).show();
++    }
++
++    @Override
++    public boolean onCreateOptionsMenu(Menu menu) {
++        getMenuInflater().inflate(R.menu.menu_control, menu);
++        return true;
++    }
++
++    @Override
++    public boolean onOptionsItemSelected(MenuItem item) {
++        int id = item.getItemId();
++
++        if (id == R.id.action_settings) {
++            return true;
++        }
++
++        return super.onOptionsItemSelected(item);
++    }
++
++    private class ConnectBT extends AsyncTask<Void, Void, Void>  // UI thread
++    {
++        private boolean ConnectSuccess = true;
++
++        @Override
++        protected void onPreExecute()
++        {
++            progress = ProgressDialog.show(MainActivity.this, "Connecting...", "Please wait!!!");
++        }
++
++        @Override
++        protected Void doInBackground(Void... devices)
++        {
++            try
++            {
++                if (btSocket == null || !isBtConnected)
++                {
++                    myBluetooth = BluetoothAdapter.getDefaultAdapter();
++                    BluetoothDevice dispositivo = myBluetooth.getRemoteDevice(address);//conectamos al dispositivo y chequeamos si esta disponible
++                    btSocket = dispositivo.createInsecureRfcommSocketToServiceRecord(myUUID);
++                    BluetoothAdapter.getDefaultAdapter().cancelDiscovery();
++                    btSocket.connect();
++                }
++            }
++            catch (IOException e)
++            {
++                ConnectSuccess = false;
++            }
++            return null;
++        }
++        @Override
++        protected void onPostExecute(Void result)
++        {
++            super.onPostExecute(result);
++
++            if (!ConnectSuccess)
++            {
++                msg("Conexión Fallida");
++                finish();
++            }
++            else
++            {
++                msg("Conectado");
++                isBtConnected = true;
++            }
++            progress.dismiss();
++        }
++    }
++}
+Index: app/.gitignore
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/.gitignore	(revision )
++++ app/.gitignore	(revision )
+@@ -0,0 +1,1 @@
++/build
+Index: app/src/main/res/values/strings.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/res/values/strings.xml	(revision )
++++ app/src/main/res/values/strings.xml	(revision )
+@@ -0,0 +1,7 @@
++<resources>
++    <string name="app_name">Riegos</string>
++
++    <string name="hello_world">Hello world!</string>
++    <string name="action_settings">Settings</string>
++    <string name="title_activity_led_control">ledControl</string>
++</resources>
+Index: app/src/androidTest/java/com/example/kamar/riegos/ApplicationTest.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/androidTest/java/com/example/kamar/riegos/ApplicationTest.java	(revision )
++++ app/src/androidTest/java/com/example/kamar/riegos/ApplicationTest.java	(revision )
+@@ -0,0 +1,13 @@
++package com.example.kamar.riegos;
++
++import android.app.Application;
++import android.test.ApplicationTestCase;
++
++/**
++ * <a href="http://d.android.com/tools/testing/testing_android.html">Testing Fundamentals</a>
++ */
++public class ApplicationTest extends ApplicationTestCase<Application> {
++    public ApplicationTest() {
++        super(Application.class);
++    }
++}
+\ No newline at end of file
+Index: app/src/main/res/layout/activity_main.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/res/layout/activity_main.xml	(revision )
++++ app/src/main/res/layout/activity_main.xml	(revision )
+@@ -0,0 +1,159 @@
++<?xml version="1.0" encoding="utf-8"?>
++<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
++    xmlns:tools="http://schemas.android.com/tools"
++    android:layout_width="match_parent"
++    android:layout_height="match_parent"
++    android:paddingBottom="@dimen/activity_vertical_margin"
++    android:paddingLeft="@dimen/activity_horizontal_margin"
++    android:paddingRight="@dimen/activity_horizontal_margin"
++    android:paddingTop="@dimen/activity_vertical_margin"
++    tools:context="com.example.kamar.riegos.MainActivity">
++
++    <TextView
++        android:layout_width="wrap_content"
++        android:layout_height="wrap_content"
++        android:text="Hello World!" />
++
++    <LinearLayout
++        android:orientation="vertical"
++        android:layout_width="match_parent"
++        android:layout_height="match_parent" >
++
++        <TextView
++            android:layout_width="wrap_content"
++            android:layout_height="wrap_content"
++            android:text="Hello World!"
++            android:id="@+id/textView2" />
++
++        <TextView
++            android:layout_width="wrap_content"
++            android:layout_height="wrap_content"
++            android:textAppearance="?android:attr/textAppearanceLarge"
++            android:text="Tablero de control."
++            android:id="@+id/textView3"
++            android:autoText="false"
++            android:elegantTextHeight="false" />
++    </LinearLayout>
++
++    <LinearLayout
++        android:orientation="horizontal"
++        android:layout_width="match_parent"
++        android:layout_height="match_parent"
++        android:layout_below="@+id/textView"
++        android:layout_alignParentRight="true"
++        android:layout_alignParentEnd="true"
++        android:layout_marginTop="69dp" >
++
++        <LinearLayout
++            android:orientation="vertical"
++            android:layout_width="wrap_content"
++            android:layout_height="wrap_content" >
++
++            <Button
++                android:layout_width="match_parent"
++                android:layout_height="wrap_content"
++                android:text="Conectar"
++                android:id="@+id/button1" />
++
++            <Button
++                android:layout_width="wrap_content"
++                android:layout_height="wrap_content"
++                android:text="Desconectar"
++                android:id="@+id/button2" />
++
++            <Button
++                android:layout_width="wrap_content"
++                android:layout_height="wrap_content"
++                android:text="Desconectar"
++                android:id="@+id/button3" />
++        </LinearLayout>
++
++        <LinearLayout
++            android:orientation="vertical"
++            android:layout_width="wrap_content"
++            android:layout_height="wrap_content" >
++
++            <CheckBox
++                android:layout_width="wrap_content"
++                android:layout_height="wrap_content"
++                android:text="New CheckBox"
++                android:id="@+id/checkBox2" />
++
++            <LinearLayout
++                android:orientation="vertical"
++                android:layout_width="wrap_content"
++                android:layout_height="wrap_content" >
++
++                <TextView
++                    android:layout_width="wrap_content"
++                    android:layout_height="wrap_content"
++                    android:text="Temperaturas"
++                    android:id="@+id/textView4" />
++
++                <TextView
++                    android:layout_width="wrap_content"
++                    android:layout_height="wrap_content"
++                    android:text="Ambiente"
++                    android:id="@+id/textView5" />
++
++                <TextView
++                    android:layout_width="wrap_content"
++                    android:layout_height="wrap_content"
++                    android:textAppearance="?android:attr/textAppearanceLarge"
++                    android:text="0"
++                    android:id="@+id/textView6"
++                    android:background="#ddf573" />
++
++                <TextView
++                    android:layout_width="wrap_content"
++                    android:layout_height="wrap_content"
++                    android:text="Suelo"
++                    android:id="@+id/textView7" />
++
++                <TextView
++                    android:layout_width="wrap_content"
++                    android:layout_height="wrap_content"
++                    android:textAppearance="?android:attr/textAppearanceLarge"
++                    android:text="0"
++                    android:id="@+id/textView8"
++                    android:background="#f5bd73" />
++
++                <TextView
++                    android:layout_width="150dp"
++                    android:layout_height="wrap_content"
++                    android:textAppearance="?android:attr/textAppearanceLarge"
++                    android:text="Brillo"
++                    android:id="@+id/textView9"
++                    android:layout_marginTop="42dp"
++                    android:layout_below="@+id/button1"
++                    android:layout_alignParentLeft="true"
++                    android:layout_alignParentStart="true" />
++
++                <TextView
++                    android:layout_width="wrap_content"
++                    android:layout_height="wrap_content"
++                    android:id="@+id/txtvlumn"
++                    android:layout_alignTop="@+id/textView5"
++                    android:layout_toRightOf="@+id/button2"
++                    android:layout_marginLeft="6dp"
++                    android:layout_marginStart="6dp"
++                    android:layout_alignParentRight="true"
++                    android:layout_alignParentEnd="true"
++                    android:layout_above="@+id/seekBar" />
++
++                <SeekBar
++                    android:layout_width="wrap_content"
++                    android:layout_height="wrap_content"
++                    android:id="@+id/seekBar"
++                    android:max="255"
++                    android:progress="1"
++                    android:indeterminate="false"
++                    android:layout_below="@+id/textView5"
++                    android:layout_alignParentLeft="true"
++                    android:layout_alignParentStart="true"
++                    android:layout_alignParentRight="true"
++                    android:layout_alignParentEnd="true" />
++            </LinearLayout>
++        </LinearLayout>
++    </LinearLayout>
++</RelativeLayout>
+Index: app/src/test/java/com/example/kamar/riegos/ExampleUnitTest.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/test/java/com/example/kamar/riegos/ExampleUnitTest.java	(revision )
++++ app/src/test/java/com/example/kamar/riegos/ExampleUnitTest.java	(revision )
+@@ -0,0 +1,15 @@
++package com.example.kamar.riegos;
++
++import org.junit.Test;
++
++import static org.junit.Assert.*;
++
++/**
++ * To work on unit tests, switch the Test Artifact in the Build Variants view.
++ */
++public class ExampleUnitTest {
++    @Test
++    public void addition_isCorrect() throws Exception {
++        assertEquals(4, 2 + 2);
++    }
++}
+\ No newline at end of file
+Index: app/src/main/res/values/dimens.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/res/values/dimens.xml	(revision )
++++ app/src/main/res/values/dimens.xml	(revision )
+@@ -0,0 +1,5 @@
++<resources>
++    <!-- Default screen margins, per the Android Design guidelines. -->
++    <dimen name="activity_horizontal_margin">16dp</dimen>
++    <dimen name="activity_vertical_margin">16dp</dimen>
++</resources>
+Index: app/src/main/res/values/styles.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/res/values/styles.xml	(revision )
++++ app/src/main/res/values/styles.xml	(revision )
+@@ -0,0 +1,11 @@
++<resources>
++
++    <!-- Base application theme. -->
++    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
++        <!-- Customize your theme here. -->
++        <item name="colorPrimary">@color/colorPrimary</item>
++        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
++        <item name="colorAccent">@color/colorAccent</item>
++    </style>
++
++</resources>
+Index: app/src/main/res/values-w820dp/dimens.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/res/values-w820dp/dimens.xml	(revision )
++++ app/src/main/res/values-w820dp/dimens.xml	(revision )
+@@ -0,0 +1,6 @@
++<resources>
++    <!-- Example customization of dimensions originally defined in res/values/dimens.xml
++         (such as screen margins) for screens with more than 820dp of available width. This
++         would include 7" and 10" devices in landscape (~960dp and ~1280dp respectively). -->
++    <dimen name="activity_horizontal_margin">64dp</dimen>
++</resources>
